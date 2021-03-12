@@ -23,11 +23,15 @@ const connect = function() {
     // Close connection if desired
     // conn.end();
   });
-
+  conn.on('connect', () => {
+    console.log("snake starting")
+    conn.write('name: ACW')
+  })
   conn.on('end', () => {
     // on closing, perform certain closing executions
     console.log('disconnected from server');
   });
+  return conn;
 }
 
-connect();
+module.exports = {connect}
